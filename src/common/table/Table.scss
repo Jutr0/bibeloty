@@ -1,0 +1,49 @@
+@import '../../theme/variables';
+
+.table, table {
+  width: 100%;
+  height: 100%;
+
+  td, th {
+    height: 40px;
+    padding: 10px;
+  }
+
+  thead {
+    background: $primary;
+
+    th {
+      text-align: left;
+
+      &:last-child {
+        width: 100px;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(odd) {
+        background: $primary;
+        color: $text;
+      }
+
+      &:nth-child(even) {
+        background: $secondary;
+        color: $secondary-text;
+      }
+    }
+  }
+
+  .add-new {
+    cursor: pointer;
+    width: 100%;
+    background: $white;
+    color: $secondary-text;
+    border: 1px dashed $secondary;
+
+    &:hover {
+      background: $secondary;
+    }
+  }
+}

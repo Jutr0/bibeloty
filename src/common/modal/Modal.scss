@@ -1,0 +1,92 @@
+@import '../../theme/variables';
+
+.modal {
+  z-index: 100;
+  width: 100%;
+  min-height: min(100vh, 100%);
+  max-height: min(100vh, 100%);
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  outline: 0;
+
+  & > .overlay {
+    height: 100%;
+    width: 100%;
+    background: #00000090;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    animation: fade-in .2s linear;
+  }
+
+  @keyframes move-in {
+    from {
+      transform: translateY(-100px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .modal-dialog {
+    width: 100%;
+    margin: 28px;
+    max-height: 100%;
+    max-width: 500px;
+    position: relative;
+    pointer-events: none;
+    animation: move-in 0.4s ease-out,
+    fade-in 0.4s ease-out;
+  }
+
+  .modal-content {
+    z-index: 1;
+    background: $background;
+    width: 100%;
+    max-height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+
+  }
+
+  .modal-sm {
+    max-width: 600px;
+  }
+
+  .modal-md {
+    max-width: 800px;
+  }
+
+  .modal-lg {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: $small) {
+  .modal {
+    .modal-dialog {
+      max-width: calc(100% - 56px);
+    }
+  }
+}
