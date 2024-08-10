@@ -24,7 +24,7 @@ const CategoryModal = ({category, onClose, onSave}) => {
         </ModalBody>
         <ModalFooter>
             <Button className="cancel" onClick={onClose}>Cancel</Button>
-            <Button onClick={onSave}>Save</Button>
+            <Button onClick={() => onSave(formik.values)}>Save</Button>
         </ModalFooter>
     </Modal>
 }

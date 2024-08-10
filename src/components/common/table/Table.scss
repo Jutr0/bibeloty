@@ -28,14 +28,14 @@
 
   tbody {
     tr {
-      &:nth-child(odd) {
-        background: $primary;
+      &:nth-child(even) {
+        background: darken($background, 5);
         color: $text;
       }
 
-      &:nth-child(even) {
-        background: $secondary;
-        color: $secondary-text;
+      &:nth-child(odd) {
+        background: $background;
+        color: $text;
       }
     }
   }

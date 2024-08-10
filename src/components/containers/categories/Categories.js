@@ -33,7 +33,8 @@ const Categories = () => {
         actions.findAll(setCategories)
     }, []);
 
-    const handleSave = (category) =>{
+    const handleSave = (category) => {
+        setCategory(null)
         actions.save(category, (c) => setCategories(prev => replaceOrAdd(prev, c)))
     }
 
