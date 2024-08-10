@@ -1,8 +1,7 @@
-@import '../../theme/variables';
+@import '../../../theme/variables';
 
 .table, table {
   width: 100%;
-  height: 100%;
 
   td, th {
     height: 40px;
@@ -11,12 +10,18 @@
 
   thead {
     background: $primary;
+    color: $secondary-text;
 
     th {
       text-align: left;
 
       &:last-child {
         width: 100px;
+        border-top-right-radius: 8px;
+      }
+
+      &:first-child {
+        border-top-left-radius: 8px;
       }
     }
   }
@@ -36,14 +41,18 @@
   }
 
   .add-new {
-    cursor: pointer;
-    width: 100%;
-    background: $white;
-    color: $secondary-text;
+    width: calc(100% - 4px);
+    margin-left: 2px;
+    margin-top: -2px;
+    background: $background;
+    color: $text;
     border: 1px dashed $secondary;
+    border-top: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 
     &:hover {
-      background: $secondary;
+      background: darken($background, 3);
     }
   }
 }

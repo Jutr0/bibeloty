@@ -3,8 +3,9 @@ import Box from "../../common/box/Box";
 import Table from "../../common/table/Table";
 import {createColumnHelper} from "@tanstack/react-table";
 import {useEffect, useState} from "react";
-import {buildActions} from "../../utils/actionsBuilder";
-import Modal from "../../common/modal/Modal";
+import CategoryModal from "./CategoryModal";
+import {buildActions} from "../../../utils/actionsBuilder";
+import {replaceOrAdd} from "../../../utils/utils";
 
 const Categories = () => {
     const [categories, setCategories] = useState([])
@@ -32,8 +33,8 @@ const Categories = () => {
         actions.findAll(setCategories)
     }, []);
 
-    const handleAdd = () => {
-        setCategory({})
+    const handleSave = (category) =>{
+        actions.save(category, (c) => setCategories(prev => replaceOrAdd(prev, c)))
     }
 
     const handleEdit = (category) => {
@@ -45,8 +46,8 @@ const Categories = () => {
     }
 
     return <Box className="categories">
-        <Table columns={columns} data={categories} onAdd={handleAdd}/>
-        {category && <Modal isOpen toggle={() => setCategory(null)}>Test</Modal>}
+        <Table columns={columns} data={categories} onAdd={() => setCategory({})}/>
+        {category && <CategoryModal category={category} onSave={handleSave} onClose={() => setCategory(null)}/>}
     </Box>;
 }
 

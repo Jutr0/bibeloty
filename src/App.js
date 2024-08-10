@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Routes} from "react-router";
-import Categories from "./containers/categories/Categories";
-import Layout from "./common/layout/Layout";
+import Categories from "./components/containers/categories/Categories";
+import Layout from "./components/common/layout/Layout";
 
 function App() {
     return (

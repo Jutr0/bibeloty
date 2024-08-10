@@ -1,4 +1,4 @@
-@import '../../theme/variables';
+@import '../../../theme/variables';
 
 .modal {
   z-index: 100;
@@ -13,6 +13,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   outline: 0;
+  color: $text;
 
   & > .overlay {
     height: 100%;
@@ -64,10 +65,8 @@
     flex-direction: column;
     pointer-events: auto;
     background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 0.3rem;
     outline: 0;
-
   }
 
   .modal-sm {

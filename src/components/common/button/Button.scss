@@ -1,0 +1,19 @@
+@import '../../../theme/variables';
+
+.button {
+  color: $secondary-text;
+  font-size: 14px;
+  font-weight: bolder;
+  background: $primary;
+  min-height: 28px;
+  min-width: 80px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &.cancel {
+    color: $text;
+    background: $cancel;
+  }
+}

@@ -1,0 +1,9 @@
+@import '../../../theme/variables';
+
+.modal-header {
+  display: flex;
+  min-height: 50px;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px rgba($primary, 0.15) solid;
+}

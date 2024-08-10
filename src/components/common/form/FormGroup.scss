@@ -1,0 +1,25 @@
+@import '../../../theme/variables';
+
+.form-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .form-field {
+    width: 100%;
+    display: flex;
+
+    .label {
+      color: $label-text;
+      font-size: 12px;
+      width: 20%;
+      text-align: right;
+      padding-right: 36px;
+    }
+
+    .form-input {
+      width: 80%;
+    }
+  }
+}

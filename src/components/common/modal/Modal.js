@@ -3,20 +3,18 @@ import {createPortal} from "react-dom";
 import './Modal.scss';
 import classnames from "classnames";
 
-const Modal = ({children, className, toggle, isOpen, size, backdropClassName, zIndex}) => {
+const Modal = ({children, className, toggle, size, backdropClassName, zIndex}) => {
 
     useEffect(() => {
-        if (isOpen) {
-            const originalOverflow = window.getComputedStyle(document.body).overflow;
-            document.body.style.overflow = 'hidden';
+        const originalOverflow = window.getComputedStyle(document.body).overflow;
+        document.body.style.overflow = 'hidden';
 
-            return () => {
-                document.body.style.overflow = originalOverflow;
-            };
-        }
-    }, [isOpen]);
+        return () => {
+            document.body.style.overflow = originalOverflow;
+        };
+    }, []);
 
-    return isOpen ? createPortal(
+    return createPortal(
         <div className="modal" style={{zIndex}}>
             <div className={classnames("overlay", {[`${backdropClassName}`]: !!backdropClassName})} onClick={toggle}/>
             <div className={classnames("modal-dialog", className, {[`modal-${size}`]: !!size})}>
@@ -25,7 +23,7 @@ const Modal = ({children, className, toggle, isOpen, size, backdropClassName, zI
                 </div>
             </div>
         </div>
-        , document.body) : null;
+        , document.body);
 
 }
 
