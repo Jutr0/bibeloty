@@ -1,8 +1,9 @@
 import axios from "axios";
 
-export const get = (url, callback) => {
+export const get = (url, callback, params) => {
     const config = {
-        url
+        url,
+        params
     };
     axios.request(config).then(
         result => callback(result.data)

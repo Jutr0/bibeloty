@@ -1,58 +1,64 @@
 @import '../../../theme/variables';
 
-.table, table {
-  width: 100%;
+.table {
+  border-radius: 8px;
 
-  td, th {
-    height: 40px;
-    padding: 10px;
-  }
+  table {
+    width: 100%;
+    border-spacing: 0;
+    border: 1px solid $border-color;
 
-  thead {
-    background: $primary;
-    color: $secondary-text;
+    td, th {
+      height: 40px;
+      padding: 10px;
+    }
 
-    th {
-      text-align: left;
+    thead {
+      background: $primary;
+      color: $secondary-text;
 
-      &:last-child {
-        width: 100px;
-        border-top-right-radius: 8px;
-      }
+      th {
+        text-align: left;
 
-      &:first-child {
-        border-top-left-radius: 8px;
+        &:last-child {
+          width: 100px;
+          border-top-right-radius: 8px;
+        }
+
+        &:first-child {
+          border-top-left-radius: 8px;
+        }
       }
     }
-  }
 
-  tbody {
-    tr {
-      &:nth-child(even) {
-        background: darken($background, 5);
-        color: $text;
-      }
+    tbody {
+      tr {
+        &:nth-child(even) {
+          background: darken($background, 5);
+          color: $text;
+        }
 
-      &:nth-child(odd) {
-        background: $background;
-        color: $text;
+        &:nth-child(odd) {
+          background: $background;
+          color: $text;
+        }
       }
     }
-  }
 
-  .add-new {
-    width: calc(100% - 4px);
-    margin-left: 2px;
-    margin-top: -2px;
-    background: $background;
-    color: $text;
-    border: 1px dashed $secondary;
-    border-top: none;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    .add-new {
+      width: calc(100% - 4px);
+      margin-left: 2px;
+      margin-top: -2px;
+      background: $background;
+      color: $text;
+      border: 1px dashed $secondary;
+      border-top: none;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
 
-    &:hover {
-      background: darken($background, 3);
+      &:hover {
+        background: darken($background, 3);
+      }
     }
   }
 }

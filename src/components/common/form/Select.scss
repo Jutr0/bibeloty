@@ -1,0 +1,13 @@
+@import '../../../theme/variables';
+
+.select {
+  .select__control {
+    border: 1px solid $gray;
+  }
+
+  &.error {
+    .select__control {
+      border: 1px solid $error;
+    }
+  }
+}

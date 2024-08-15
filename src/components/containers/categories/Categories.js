@@ -1,4 +1,3 @@
-import "./Categories.scss"
 import Box from "../../common/box/Box";
 import Table from "../../common/table/Table";
 import {createColumnHelper} from "@tanstack/react-table";
@@ -44,8 +43,11 @@ const Categories = () => {
         actions.remove(category, () => setCategories(prev => prev.filter(prevC => prevC.id !== category.id)))
     }
 
-    return <Box className="categories" header={{icon: <CategoryIcon/>, path: [{label: "Categories"}]}}>
-        <Table columns={columns} data={categories} onAdd={() => setEditedCategory({})}/>
+    return <Box className="categories"
+                header={{icon: <CategoryIcon/>, path: [{label: "Categories"}]}}
+                onAdd={() => setEditedCategory({})}
+    >
+        <Table columns={columns} data={categories}/>
         {editedCategory &&
             <CategoryModal category={editedCategory} onSave={handleSave} onClose={() => setEditedCategory(null)}/>}
         {deletedCategory && <ConfirmationModal icon={<CategoryIcon/>}

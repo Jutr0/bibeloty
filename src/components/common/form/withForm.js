@@ -2,6 +2,15 @@ import classnames from "classnames";
 
 const withForm = Component => ({formik, name, label, required, ...props}) => {
     const error = (formik.submitCount || formik.touched[name]) && formik.errors[name];
+
+    const handleChange = (value) => {
+        formik.setFieldValue(name, value).then(() => {
+            if (formik.submitCount > 0) {
+                formik.validateForm()
+            }
+        })
+    }
+
     return <div className='form-field'>
         {label && <label className={classnames("label", {required})} htmlFor={name}>
             {label}
@@ -11,7 +20,7 @@ const withForm = Component => ({formik, name, label, required, ...props}) => {
             id={name}
             name={name}
             value={formik.values[name]}
-            onChange={formik.handleChange}
+            onChange={handleChange}
             onBlur={formik.handleBlur}
             {...props}
         />
