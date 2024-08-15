@@ -1,7 +1,7 @@
 import './ModalHeader.scss'
 
-const ModalHeader = ({children}) => {
-    return <div className='modal-header'>{children}</div>
+const ModalHeader = ({icon, children}) => {
+    return <div className='modal-header'><div className="icon">{icon}</div>{children}</div>
 }
 
 export default ModalHeader;

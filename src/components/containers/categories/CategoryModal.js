@@ -7,6 +7,7 @@ import Input from "../../common/form/Input";
 import {useFormik} from "formik";
 import FormGroup from "../../common/form/FormGroup";
 import * as Yup from 'yup';
+import CategoryIcon from '@mui/icons-material/Category';
 
 const validationSchema = Yup.object({
     name: Yup.string()
@@ -24,8 +25,8 @@ const CategoryModal = ({category, onClose, onSave}) => {
     })
 
     return <Modal toggle={onClose} size="lg">
-        <ModalHeader>
-            Category - {category.name || "New"}
+        <ModalHeader icon={<CategoryIcon/>}>
+             <b>Categories</b>: {category.name ? `${category.name} - Edit` : "New"}
         </ModalHeader>
         <ModalBody>
             <FormGroup onSubmit={formik.handleSubmit}>

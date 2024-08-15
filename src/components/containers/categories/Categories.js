@@ -8,6 +8,7 @@ import {buildActions} from "../../../utils/actionsBuilder";
 import {replaceOrAdd} from "../../../utils/utils";
 import {renderActionButtons} from "../../common/table/tableFormatters";
 import ConfirmationModal from "../../common/modal/confirmationModal/ConfirmationModal";
+import CategoryIcon from "@mui/icons-material/Category";
 
 const Categories = () => {
     const [categories, setCategories] = useState([])
@@ -43,11 +44,12 @@ const Categories = () => {
         actions.remove(category, () => setCategories(prev => prev.filter(prevC => prevC.id !== category.id)))
     }
 
-    return <Box className="categories">
+    return <Box className="categories" header={{icon: <CategoryIcon/>, path: [{label: "Categories"}]}}>
         <Table columns={columns} data={categories} onAdd={() => setEditedCategory({})}/>
         {editedCategory &&
             <CategoryModal category={editedCategory} onSave={handleSave} onClose={() => setEditedCategory(null)}/>}
-        {deletedCategory && <ConfirmationModal headerTitle="Category" itemName={deletedCategory.name}
+        {deletedCategory && <ConfirmationModal icon={<CategoryIcon/>}
+                                               headerTitle="Categories" itemName={deletedCategory.name}
                                                onClose={() => setDeletedCategory(null)}
                                                onConfirm={() => handleDelete(deletedCategory)}
         />}
