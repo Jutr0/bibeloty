@@ -1,11 +1,13 @@
-const withForm = Component => ({formik, name, label, ...props}) => {
-    const error = formik.touched[name] && formik.errors[name];
+import classnames from "classnames";
+
+const withForm = Component => ({formik, name, label, required, ...props}) => {
+    const error = (formik.submitCount || formik.touched[name]) && formik.errors[name];
     return <div className='form-field'>
-        {label && <label className="label" htmlFor={name}>
+        {label && <label className={classnames("label", {required})} htmlFor={name}>
             {label}
         </label>}
         <Component
-            className="form-input"
+            className={classnames("form-input", {error})}
             id={name}
             name={name}
             value={formik.values[name]}
@@ -13,7 +15,7 @@ const withForm = Component => ({formik, name, label, ...props}) => {
             onBlur={formik.handleBlur}
             {...props}
         />
-        {error && <span>{error}</span>}
+        {error && <span className="error">{error}</span>}
     </div>
 }
 

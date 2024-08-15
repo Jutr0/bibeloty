@@ -6,25 +6,35 @@ import Button from "../../common/button/Button";
 import Input from "../../common/form/Input";
 import {useFormik} from "formik";
 import FormGroup from "../../common/form/FormGroup";
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object({
+    name: Yup.string()
+        .required('Required'),
+});
 
 const CategoryModal = ({category, onClose, onSave}) => {
 
     const formik = useFormik({
-        initialValues: category
+        initialValues: category,
+        onSubmit: newCategory => {
+            onSave(newCategory)
+        },
+        validationSchema
     })
 
     return <Modal toggle={onClose} size="lg">
         <ModalHeader>
-            Category - new
+            Category - {category.name || "New"}
         </ModalHeader>
         <ModalBody>
-            <FormGroup>
-                <Input name='name' autoFocus formik={formik} label="Name"/>
+            <FormGroup onSubmit={formik.handleSubmit}>
+                <Input required name='name' autoFocus formik={formik} label="Name"/>
             </FormGroup>
         </ModalBody>
         <ModalFooter>
             <Button className="cancel" onClick={onClose}>Cancel</Button>
-            <Button onClick={() => onSave(formik.values)}>Save</Button>
+            <Button onClick={formik.handleSubmit}>Save</Button>
         </ModalFooter>
     </Modal>
 }

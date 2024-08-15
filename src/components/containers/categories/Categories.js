@@ -6,10 +6,12 @@ import {useEffect, useState} from "react";
 import CategoryModal from "./CategoryModal";
 import {buildActions} from "../../../utils/actionsBuilder";
 import {replaceOrAdd} from "../../../utils/utils";
+import {renderActionButtons} from "../../common/table/tableFormatters";
+import ConfirmationModal from "../../common/modal/confirmationModal/ConfirmationModal";
 
 const Categories = () => {
     const [categories, setCategories] = useState([])
-    const [category, setCategory] = useState()
+    const [editedCategory, setEditedCategory] = useState()
     const [deletedCategory, setDeletedCategory] = useState()
 
     const actions = buildActions("category", "categories")
@@ -21,9 +23,7 @@ const Categories = () => {
             header: () => 'Name'
         }),
         columnHelper.accessor('id', {
-            cell: () => <div className="actions">
-                edit, delete etc.
-            </div>,
+            cell: (info) => renderActionButtons(() => setEditedCategory(info.row.original), () => setDeletedCategory(info.row.original)),
             header: () => 'Actions'
         })
 
@@ -34,21 +34,23 @@ const Categories = () => {
     }, []);
 
     const handleSave = (category) => {
-        setCategory(null)
+        setEditedCategory(null)
         actions.save(category, (c) => setCategories(prev => replaceOrAdd(prev, c)))
     }
 
-    const handleEdit = (category) => {
-        setCategory(category)
-    }
-
     const handleDelete = (category) => {
-        setDeletedCategory(category)
+        setDeletedCategory(null)
+        actions.remove(category, () => setCategories(prev => prev.filter(prevC => prevC.id !== category.id)))
     }
 
     return <Box className="categories">
-        <Table columns={columns} data={categories} onAdd={() => setCategory({})}/>
-        {category && <CategoryModal category={category} onSave={handleSave} onClose={() => setCategory(null)}/>}
+        <Table columns={columns} data={categories} onAdd={() => setEditedCategory({})}/>
+        {editedCategory &&
+            <CategoryModal category={editedCategory} onSave={handleSave} onClose={() => setEditedCategory(null)}/>}
+        {deletedCategory && <ConfirmationModal headerTitle="Category" itemName={deletedCategory.name}
+                                               onClose={() => setDeletedCategory(null)}
+                                               onConfirm={() => handleDelete(deletedCategory)}
+        />}
     </Box>;
 }
 

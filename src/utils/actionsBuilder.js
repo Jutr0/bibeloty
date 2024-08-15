@@ -20,6 +20,14 @@ export const save = (url, method, data, callback) => {
     );
 };
 
+export const remove = (url, callback) => {
+    const config = {
+        url,
+        method: "DELETE"
+    }
+    axios.request(config).then(result => callback(result.data))
+}
+
 export const buildActions = (resourceName, url) => {
     let apiUrl = url || resourceName + "s"
     const findAll = (callback) => {
@@ -38,6 +46,10 @@ export const buildActions = (resourceName, url) => {
         }
         save(apiUrl, method, {[resourceName]: resource}, callback)
     }
+    const removeResource = (resource, callback) => {
+        apiUrl += `/${resource.id}`
+        remove(apiUrl, callback)
+    }
 
-    return {findAll, findOne, save: saveResource}
+    return {findAll, findOne, save: saveResource, remove: removeResource}
 }

@@ -5,7 +5,7 @@
   font-size: 14px;
   font-weight: bolder;
   background: $primary;
-  min-height: 28px;
+  min-height: 32px;
   min-width: 80px;
   padding: 4px 8px;
   border: none;
@@ -15,5 +15,18 @@
   &.cancel {
     color: $text;
     background: $cancel;
+  }
+
+  &.icon {
+    background: transparent;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    padding: 0;
+
+    svg {
+      color: $primary
+    }
   }
 }
