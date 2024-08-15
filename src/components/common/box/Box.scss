@@ -8,7 +8,7 @@
 
   & > .header {
     width: 100%;
-    min-height: 50px;
+    height: 50px;
     border-bottom: 1px $border-color solid;
     display: flex;
     align-items: center;
@@ -37,6 +37,8 @@
 
   & > .body {
     padding: 16px;
-
+    height: calc(100% - 50px);
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 }

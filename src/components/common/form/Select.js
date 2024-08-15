@@ -3,7 +3,7 @@ import withForm from "./withForm";
 import classnames from "classnames";
 import {defaultSelectFormatter} from "../../../utils/formUtils";
 import './Select.scss'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import _ from 'lodash';
 import CreatableSelect from "react-select/creatable";
 
@@ -16,17 +16,33 @@ const Select = ({
                     search,
                     options: initialOptions = [],
                     formatter = defaultSelectFormatter,
-                    onCreate
+                    onCreate,
+                    isMulti
                 }) => {
 
-    const [options, setOptions] = useState(initialOptions);
+    const [formattedOptions, setFormattedOptions] = useState(initialOptions.map(formatter.toSelect));
+    const [formattedValue, setFormattedValue] = useState(value);
 
-    const formattedOptions = options.map(formatter.toSelect)
-    const formattedValue = value ? formatter.toSelect(value) : null
-    const formattedOnChange = newValue => onChange(formatter.toFormik(newValue))
+    useEffect(() => {
+        if (value) {
+            if (isMulti) {
+                setFormattedValue(value.map(formatter.toSelect));
+            } else {
+                setFormattedValue(formatter.toSelect(value))
+            }
+        }
+    }, [value, isMulti]);
+
+    const formattedOnChange = newValue => {
+        if (isMulti) {
+            onChange(newValue.map(formatter.toFormik))
+        } else {
+            onChange(formatter.toFormik(newValue))
+        }
+    }
 
     const handleSearch = (query) => {
-        search(query, setOptions)
+        search(query, options => setFormattedOptions(options.map(formatter.toSelect)))
     }
 
     const debouncedSearch = _.debounce(handleSearch, 500);
@@ -38,8 +54,12 @@ const Select = ({
     const handleInputChange = (value) => {
         search && debouncedSearch(value)
     }
-    const onCreateOption = (value) => {
-        onCreate(value, onChange)
+    const onCreateOption = (option) => {
+        if (isMulti) {
+            onCreate(option, createdOption => onChange([...value, createdOption]))
+        } else {
+            onCreate(option, onChange)
+        }
     }
     const selectProps = {
         id,
@@ -51,7 +71,8 @@ const Select = ({
         onInputChange: handleInputChange,
         options: formattedOptions,
         onChange: formattedOnChange,
-        onCreateOption
+        onCreateOption,
+        isMulti
     };
 
 
