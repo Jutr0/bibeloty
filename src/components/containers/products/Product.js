@@ -1,14 +1,14 @@
 import Box from "../../common/box/Box";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import {useFormik} from "formik";
-import FormGroup from "../../common/form/FormGroup";
-import Input from "../../common/form/Input";
+import FormGroup from "../../common/form/formGroup/FormGroup";
+import Input from "../../common/form/input/Input";
 import {useNavigate, useParams} from "react-router";
 import {buildActions, get, save} from "../../../utils/actionsBuilder";
 import {useEffect, useState} from "react";
 import * as Yup from "yup";
-import Select from "../../common/form/Select";
-import TextArea from "../../common/form/TextArea";
+import Select from "../../common/form/select/Select";
+import TextArea from "../../common/form/textArea/TextArea";
 
 const validationSchema = Yup.object({
     name: Yup.string()

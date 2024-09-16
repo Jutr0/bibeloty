@@ -1,22 +1,21 @@
-import withForm from "./withForm";
+import withForm from "../withForm";
 import classnames from "classnames";
-import './Input.scss'
+import './TextArea.scss'
 
-const Input = ({id, autoFocus, name, onChange, className, value, type, onBlur}) => {
+const TextArea = ({id, autoFocus, name, onChange, className, value, onBlur}) => {
 
     const handleChange = e => onChange(e.target.value)
     return (
-        <input
+        <textarea
             id={id}
             autoFocus={autoFocus}
             name={name}
             onChange={handleChange}
-            className={classnames("input", className)}
+            className={classnames("textarea", className)}
             value={value}
-            type={type}
             onBlur={onBlur}
         />
     )
 }
 
-export default withForm(Input);
+export default withForm(TextArea);

@@ -3,9 +3,9 @@ import ModalHeader from "../../common/modal/ModalHeader";
 import ModalBody from "../../common/modal/ModalBody";
 import ModalFooter from "../../common/modal/ModalFooter";
 import Button from "../../common/button/Button";
-import Input from "../../common/form/Input";
+import Input from "../../common/form/input/Input";
 import {useFormik} from "formik";
-import FormGroup from "../../common/form/FormGroup";
+import FormGroup from "../../common/form/formGroup/FormGroup";
 import * as Yup from 'yup';
 import {Warehouse} from "@mui/icons-material";
 

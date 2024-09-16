@@ -1,7 +1,7 @@
 import ReactSelect from 'react-select'
-import withForm from "./withForm";
+import withForm from "../withForm";
 import classnames from "classnames";
-import {defaultSelectFormatter} from "../../../utils/formUtils";
+import {defaultSelectFormatter} from "../../../../utils/formUtils";
 import './Select.scss'
 import {useEffect, useState} from "react";
 import _ from 'lodash';
