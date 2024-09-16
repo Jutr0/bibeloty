@@ -1,0 +1,54 @@
+@import '../../../../theme/variables';
+
+.dropzone {
+  width: 100%;
+  min-height: 100px;
+  border: 1px dashed $gray;
+  border-radius: 4px;
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+
+  &.dragging {
+    background: rgba(#000, 0.05);
+  }
+
+  .info {
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 20px;
+    color: $gray;
+    font-size: 14px;
+  }
+
+  .image {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    background: $white;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .delete {
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: none;
+    }
+
+    &:hover {
+      .delete {
+        display: block;
+      }
+    }
+  }
+}

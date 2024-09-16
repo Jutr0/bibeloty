@@ -9,6 +9,8 @@ import {useEffect, useState} from "react";
 import * as Yup from "yup";
 import Select from "../../common/form/select/Select";
 import TextArea from "../../common/form/textArea/TextArea";
+import Dropzone from "../../common/form/dropzone/Dropzone";
+import _ from "lodash";
 
 const validationSchema = Yup.object({
     name: Yup.string()
@@ -21,12 +23,15 @@ const validationSchema = Yup.object({
         .required('Required')
 });
 
-const toApi = product => ({
+const toApi = product => _.omit({
     ...product,
     category_id: product.category.id,
-    material_ids: product.materials.map(m => m.id)
-})
-
+    material_ids: product.materials.map(m => m.id),
+    product_documents_attributes: product.product_documents.map(m => ({
+        ..._.omit(m, 'document'),
+        document_id: m.document.id
+    }))
+}, "category", "materials", "product_documents")
 const Product = () => {
     const [initialName, setInitialName] = useState("New")
 
@@ -45,8 +50,11 @@ const Product = () => {
             actions.save(toApi(values), () => navigate('/products'))
         }
     })
+
     const navigate = useNavigate();
     const {id} = useParams();
+
+    const currentDocuments = formik.values.product_documents?.filter(doc => doc._destroy !== true) || [];
 
     useEffect(() => {
         if (id !== "new") {
@@ -64,6 +72,21 @@ const Product = () => {
     const handleCreateMaterial = (name, callback) => {
         actions.createMaterial({name}, callback)
     }
+    const onUploadDocument = (document) => {
+        const newPosition = currentDocuments.length > 0 ? Math.max(...currentDocuments.map(d => d.position)) + 1 : 0;
+
+        formik.setFieldValue("product_documents", [...formik.values.product_documents, {
+            document,
+            position: newPosition
+        }])
+    }
+
+    const onDeleteDocument = (id) => {
+        formik.setFieldValue("product_documents", formik.values.product_documents.map(pd => ({
+            ...pd,
+            _destroy: pd.document.id === id
+        })))
+    }
 
     return <Box className="product"
                 header={{icon: <InventoryIcon/>, path: [{label: "Products"}, {label: initialName}]}}
@@ -78,6 +101,9 @@ const Product = () => {
                     search={actions.searchCategories}/>
             <Select isMulti onCreate={handleCreateMaterial} required name='materials' formik={formik} label="Materials"
                     search={actions.searchMaterials}/>
+            <Dropzone onChange={onUploadDocument} onDelete={onDeleteDocument} name='documents' formik={formik}
+                      value={currentDocuments.map(cd => cd.document)}
+                      label="Images"/>
         </FormGroup>
     </Box>
 }
