@@ -1,10 +1,10 @@
 import React from 'react';
 import {Route, Routes} from "react-router";
-import Categories from "./components/containers/categories/Categories";
+import Categories from "./components/containers/admin/categories/Categories";
 import Layout from "./components/common/layout/Layout";
-import Products from "./components/containers/products/Products";
-import Product from "./components/containers/products/Product";
-import Materials from "./components/containers/materials/Materials";
+import Products from "./components/containers/admin/products/Products";
+import Product from "./components/containers/admin/products/Product";
+import Materials from "./components/containers/admin/materials/Materials";
 
 function App() {
     return (

@@ -10,7 +10,7 @@ export const get = (url, callback, params) => {
     );
 };
 
-export const save = (url, method, data, callback) => {
+export const save = (url, method, data, callback = () => null) => {
     const config = {
         url,
         data,
@@ -21,12 +21,18 @@ export const save = (url, method, data, callback) => {
     );
 };
 
-export const remove = (url, callback) => {
+export const remove = (url, callback, onError) => {
     const config = {
         url,
         method: "DELETE"
     }
-    axios.request(config).then(result => callback(result.data))
+    axios.request(config).then(result => callback(result.data)).catch(e => {
+        if (onError) {
+            onError(e);
+        } else {
+            throw e;
+        }
+    })
 }
 
 export const buildActions = (resourceName, url) => {
@@ -47,9 +53,9 @@ export const buildActions = (resourceName, url) => {
         }
         save(apiUrl, method, {[resourceName]: resource}, callback)
     }
-    const removeResource = (resource, callback) => {
+    const removeResource = (resource, callback, onError) => {
         apiUrl += `/${resource.id}`
-        remove(apiUrl, callback)
+        remove(apiUrl, callback, onError)
     }
 
     return {findAll, findOne, save: saveResource, remove: removeResource}

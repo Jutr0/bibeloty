@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
-import {buildActions} from "../../../utils/actionsBuilder";
+import {buildActions} from "../../../../utils/actionsBuilder";
 import {createColumnHelper} from "@tanstack/react-table";
-import {renderActionButtons} from "../../common/table/tableFormatters";
-import Box from "../../common/box/Box";
-import Table from "../../common/table/Table";
-import ConfirmationModal from "../../common/modal/confirmationModal/ConfirmationModal";
+import {renderActionButtons} from "../../../common/table/tableFormatters";
+import Box from "../../../common/box/Box";
+import Table from "../../../common/table/Table";
+import ConfirmationModal from "../../../common/modal/confirmationModal/ConfirmationModal";
 import {useNavigate} from "react-router";
 import InventoryIcon from '@mui/icons-material/Inventory';
 
