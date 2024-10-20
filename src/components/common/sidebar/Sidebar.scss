@@ -23,5 +23,9 @@
       background: $primary;
       color: $secondary-text;
     }
+    &.logout{
+      background: $secondary;
+      color: $secondary-text;
+    }
   }
 }

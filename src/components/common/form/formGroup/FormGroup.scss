@@ -6,7 +6,7 @@
   justify-content: center;
   width: 100%;
   flex-direction: column;
-  gap:20px;
+  gap: 20px;
 
   .form-field {
     width: 100%;
@@ -29,7 +29,8 @@
 
     .form-input {
       width: 80%;
-      &.error{
+
+      &.error {
         border-color: $error;
       }
     }
@@ -39,7 +40,7 @@
       font-size: 12px;
       width: 80%;
       color: $error;
-      margin-top:4px;
+      margin-top: 4px;
     }
   }
 }

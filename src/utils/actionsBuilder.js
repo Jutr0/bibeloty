@@ -10,7 +10,7 @@ export const get = (url, callback, params) => {
     );
 };
 
-export const save = (url, method, data, callback = () => null) => {
+export const save = (url, method, data, callback = () => null, onError) => {
     const config = {
         url,
         data,
@@ -18,7 +18,13 @@ export const save = (url, method, data, callback = () => null) => {
     };
     axios.request(config).then(
         result => callback(result.data)
-    );
+    ).catch(e => {
+        if (onError) {
+            onError(e);
+        } else {
+            throw e;
+        }
+    });
 };
 
 export const remove = (url, callback, onError) => {

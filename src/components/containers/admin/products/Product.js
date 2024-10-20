@@ -51,7 +51,7 @@ const Product = () => {
     const formik = useFormik({
         initialValues: {materials: [], product_documents: []},
         validationSchema,
-        onSubmit: values => actions.save(toApi(values), () => navigate('/products'))
+        onSubmit: values => actions.save(toApi(values), () => navigate('/admin/products'))
     })
 
     const navigate = useNavigate();
@@ -116,7 +116,7 @@ const Product = () => {
     return <Box className="product"
                 header={{icon: <InventoryIcon/>, path: [{label: "Products"}, {label: initialName}]}}
                 onSave={formik.handleSubmit}
-                onCancel={() => navigate('/products')}
+                onCancel={() => navigate('/admin/products')}
     >
         <FormGroup>
             <Input required name='name' formik={formik} label="Name"/>
