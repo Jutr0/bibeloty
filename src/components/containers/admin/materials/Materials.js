@@ -16,7 +16,7 @@ const Materials = () => {
     const [deletedMaterial, setDeletedMaterial] = useState()
     const [usedMaterial, setUsedMaterial] = useState()
 
-    const actions = buildActions("material")
+    const actions = buildActions("material", "admin/materials")
 
     const columnHelper = createColumnHelper()
     const columns = [

@@ -13,7 +13,7 @@ const Products = () => {
     const [deletedProduct, setDeletedProduct] = useState()
     const navigate = useNavigate();
 
-    const actions = buildActions("product")
+    const actions = buildActions("product", "admin/products")
 
     const columnHelper = createColumnHelper()
     const columns = [

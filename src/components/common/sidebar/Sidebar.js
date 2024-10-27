@@ -5,16 +5,21 @@ import classnames from "classnames";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import {Logout, Warehouse} from "@mui/icons-material";
 import axios from "axios";
+import {useNavigate} from "react-router";
 
 const Sidebar = () => {
+    const navigate = useNavigate();
 
     const logout = () => {
-        axios.request({url: "/users/sign_out", method: "DELETE"})
-            .then(() => localStorage.removeItem("token"))
+        axios.request({url: "admin/sign_out", method: "DELETE"})
+            .then(() => {
+                navigate("/admin")
+                localStorage.removeItem("token")
+            })
     }
 
     return <nav className="sidebar">
-        <NavLink to='/admin' className="item logout" onClick={logout}>
+        <NavLink to='#' className="item logout" onClick={logout}>
             <Logout/> Logout
         </NavLink>
         <NavLink to='/admin/categories' className={({isActive}) => classnames("item", {active: isActive})}>

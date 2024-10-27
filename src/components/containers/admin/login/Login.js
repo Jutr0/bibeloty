@@ -15,7 +15,7 @@ const Login = () => {
 
     const login = () => {
         setError(null)
-        axios.request({url: "/users/sign_in", data: {user: formik.values}, method: "POST"})
+        axios.request({url: "admin/sign_in", data: {user: formik.values}, method: "POST"})
             .then(result => {
                 localStorage.setItem("token", result.headers.authorization.split(" ")[1])
                 navigate("/admin/categories")

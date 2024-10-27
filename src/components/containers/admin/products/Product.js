@@ -41,11 +41,11 @@ const toApiDocuments = documents => documents?.map(m => ({
 const Product = () => {
     const [initialName, setInitialName] = useState("New")
     const actions = {
-        ...buildActions("product"),
-        searchCategories: (query, callback) => get("products/search_categories", callback, {q: query}),
-        createCategory: (category, callback) => save('categories', "POST", {category}, callback),
-        searchMaterials: (query, callback) => get("products/search_materials", callback, {q: query}),
-        createMaterial: (material, callback) => save('materials', "POST", {material}, callback)
+        ...buildActions("product", "admin/products"),
+        searchCategories: (query, callback) => get("admin/products/search_categories", callback, {q: query}),
+        createCategory: (category, callback) => save('admin/categories', "POST", {category}, callback),
+        searchMaterials: (query, callback) => get("admin/products/search_materials", callback, {q: query}),
+        createMaterial: (material, callback) => save('admin/materials', "POST", {material}, callback)
     }
 
     const formik = useFormik({

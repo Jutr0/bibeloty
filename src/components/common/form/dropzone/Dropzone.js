@@ -10,7 +10,7 @@ import Button from "../../button/Button";
 function Dropzone({onChange, onDelete, className, value: files = []}) {
 
     const actions = {
-        uploadFile: (data, callback) => save('/documents', "POST", data, callback)
+        uploadFile: (data, callback) => save('admin/documents', "POST", data, callback)
     }
 
     const onDrop = useCallback(acceptedFiles => {

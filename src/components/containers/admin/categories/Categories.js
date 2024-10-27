@@ -16,7 +16,7 @@ const Categories = () => {
     const [deletedCategory, setDeletedCategory] = useState()
     const [usedCategory, setUsedCategory] = useState()
 
-    const actions = buildActions("category", "categories")
+    const actions = buildActions("category", "admin/categories")
 
     const columnHelper = createColumnHelper()
     const columns = [
