@@ -2,6 +2,7 @@ import React from 'react';
 
 import axios from "axios";
 import AdminRoutes from "./components/containers/admin/routes/AdminRoutes";
+import CustomerRoutes from "./components/containers/customer/routes/CustomerRoutes";
 
 axios.interceptors.request.use(
     (config) => {
@@ -21,7 +22,7 @@ axios.interceptors.request.use(
 function App() {
     const adminView = window.location.pathname.startsWith('/admin')
 
-    return adminView ? <AdminRoutes/> : <div>USER ROUTES</div>
+    return adminView ? <AdminRoutes/> : <CustomerRoutes/>
 
 }
 

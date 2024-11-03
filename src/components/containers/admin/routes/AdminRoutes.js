@@ -1,6 +1,6 @@
 import {Route, Routes, useNavigate} from "react-router";
 import React, {useEffect} from "react";
-import AdminLayout from "../../../common/adminLayout/AdminLayout";
+import AdminLayout from ".././layout/AdminLayout";
 import Sidebar from "../../../common/sidebar/Sidebar";
 import Categories from "../categories/Categories";
 import Materials from "../materials/Materials";

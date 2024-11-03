@@ -43,11 +43,11 @@ export const remove = (url, callback, onError) => {
 
 export const buildActions = (resourceName, url) => {
     let apiUrl = url || resourceName + "s"
-    const findAll = (callback) => {
+    const getAll = (callback) => {
         get(apiUrl, callback)
     }
 
-    const findOne = (id, callback) => {
+    const getOne = (id, callback) => {
         get(`${apiUrl}/${id}`, callback)
     }
 
@@ -64,5 +64,5 @@ export const buildActions = (resourceName, url) => {
         remove(apiUrl, callback, onError)
     }
 
-    return {findAll, findOne, save: saveResource, remove: removeResource}
+    return {getAll, getOne, save: saveResource, remove: removeResource}
 }

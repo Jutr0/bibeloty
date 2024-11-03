@@ -32,7 +32,7 @@ const Materials = () => {
     ]
 
     useEffect(() => {
-        actions.findAll(setMaterials)
+        actions.getAll(setMaterials)
     }, []);
 
     const handleSave = (material) => {

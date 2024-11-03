@@ -61,7 +61,7 @@ const Product = () => {
 
     useEffect(() => {
         if (!isNew) {
-            actions.findOne(id, product => {
+            actions.getOne(id, product => {
                 setInitialName(product.name)
                 formik.setValues(product)
             })

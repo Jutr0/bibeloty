@@ -1,0 +1,18 @@
+.products-section {
+  padding: 40px;
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 32px;
+  }
+
+  .products {
+    display: flex;
+    justify-content: stretch;
+    gap: 16px;
+  }
+}

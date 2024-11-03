@@ -1,0 +1,26 @@
+.product-card {
+  max-width: 250px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .image {
+    width: 100%;
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .name {
+    margin: 8px 0;
+    font-weight: 500;
+    font-size: 16px;
+
+  }
+
+  .materials {
+    font-size: 12px;
+
+  }
+
+}

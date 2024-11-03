@@ -32,7 +32,7 @@ const Categories = () => {
     ]
 
     useEffect(() => {
-        actions.findAll(setCategories)
+        actions.getAll(setCategories)
     }, []);
 
     const handleSave = (category) => {

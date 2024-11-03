@@ -29,7 +29,7 @@ const Products = () => {
     ]
 
     useEffect(() => {
-        actions.findAll(setProducts)
+        actions.getAll(setProducts)
     }, []);
 
     const handleDelete = (product) => {
