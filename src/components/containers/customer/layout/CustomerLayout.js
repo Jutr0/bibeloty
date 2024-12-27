@@ -1,12 +1,12 @@
 import './CustomerLayout.scss'
 import Navbar from "./navbar/Navbar";
+import Footer from "./footer/Footer";
 
 const CustomerLayout = ({children}) => {
     return <main className="customer-layout">
-        <Navbar />
-        <div className="container">
-            {children}
-        </div>
+        <Navbar/>
+        {children}
+        <Footer/>
     </main>
 }
 

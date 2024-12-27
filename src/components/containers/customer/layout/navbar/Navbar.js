@@ -1,32 +1,28 @@
-import {NavLink} from "react-router-dom";
-import classnames from "classnames";
 import './Navbar.scss';
-import {useNavigate} from "react-router";
-
-const links = [
-    {path: "/jewelry", label: "Biżuteria"},
-    {path: "/collections", label: "Kolekcje"},
-    {path: "/bestsellers", label: "Bestsellery"}
-]
+import {useEffect, useState} from "react";
+import {buildActions} from "../../../../../utils/actionsBuilder";
+import {ShoppingCart} from "@mui/icons-material";
 
 const Navbar = () => {
+    const [sections, setSections] = useState([]);
+    const actions = buildActions("section")
 
-    const navigate = useNavigate();
-    const navigateToHome = () => {
-        navigate('/');
-    }
+    useEffect(() => {
+        actions.getAll(setSections)
+    }, [])
 
     return <nav className="navbar">
-        <h1 className="logo" onClick={navigateToHome}>BIBELOTY</h1>
+        <img className="logo" src="/images/logo.png"/>
         <div className="links">
-            {links.map((link) =>
-                <NavLink
-                    to={link.path}
-                    className={({isActive}) => classnames("item", {active: isActive})}
+            {sections.map(section =>
+                <a
+                    href={`/#${section.name}`}
+                    className="item"
                 >
-                    {link.label}
-                </NavLink>
+                    {section.name}
+                </a>
             )}
+            <ShoppingCart htmlColor="#fff"/>
         </div>
     </nav>;
 }

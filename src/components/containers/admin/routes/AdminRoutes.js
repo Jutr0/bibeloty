@@ -7,6 +7,7 @@ import Materials from "../materials/Materials";
 import Products from "../products/Products";
 import Product from "../products/Product";
 import Login from "../login/Login";
+import Sections from "../sections/Sections";
 
 
 const AdminRoutes = () => {
@@ -28,6 +29,7 @@ const AdminRoutes = () => {
                     <Route key="materials" path="materials" element={<Materials/>}/>
                     <Route key="products" path="products" element={<Products/>}/>
                     <Route key="product" path="products/:id" element={<Product/>}/>
+                    <Route key="sections" path="sections" element={<Sections/>}/>
                 </Route>
             </Routes>
         </AdminLayout>

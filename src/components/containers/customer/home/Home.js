@@ -2,26 +2,29 @@ import './Home.scss';
 import {get} from "../../../../utils/actionsBuilder";
 import {useEffect, useState} from "react";
 import ProductsSection from "../../../common/productsSection/ProductsSection";
+import Container from "../layout/box/Container";
 
 const Home = () => {
 
-    const [products, setProducts] = useState({});
+    const [productsSections, setProductsSections] = useState([]);
 
     const actions = {
-        getProducts: (callback) => get("/home", callback)
+        getProductsSections: (callback) => get("/products", callback)
     }
 
     useEffect(() => {
-        actions.getProducts(setProducts);
+        actions.getProductsSections(setProductsSections);
     }, [])
 
     return <div className="home">
-
         <div className="carousel">
             <div className="image" style={{backgroundImage: "url('/images/startPage.webp')"}}/>
         </div>
-        <ProductsSection products={products.bestsellers} title="BESTSELLERY"/>
+        <Container>
 
+            {productsSections.map(productsSection => <ProductsSection products={productsSection.products}
+                                                                      title={productsSection.name}/>)}
+        </Container>
     </div>
 }
 

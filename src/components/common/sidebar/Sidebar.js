@@ -3,7 +3,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import {NavLink} from "react-router-dom";
 import classnames from "classnames";
 import InventoryIcon from "@mui/icons-material/Inventory";
-import {Logout, Warehouse} from "@mui/icons-material";
+import {Logout, Warehouse, Segment} from "@mui/icons-material";
 import axios from "axios";
 import {useNavigate} from "react-router";
 
@@ -27,6 +27,9 @@ const Sidebar = () => {
         </NavLink>
         <NavLink to='/admin/materials' className={({isActive}) => classnames("item", {active: isActive})}>
             <Warehouse/> Materials
+        </NavLink>
+        <NavLink to='/admin/sections' className={({isActive}) => classnames("item", {active: isActive})}>
+            <Segment/> Sections
         </NavLink>
         <NavLink to='/admin/products' className={({isActive}) => classnames("item", {active: isActive})}>
             <InventoryIcon/> Products

@@ -1,4 +1,7 @@
+@import '../../../../theme/customer/colors';
+
 .customer-layout {
   height: 100vh;
-
+  overflow: auto;
+  background: $background;
 }

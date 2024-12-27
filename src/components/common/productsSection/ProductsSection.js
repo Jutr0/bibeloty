@@ -2,7 +2,7 @@ import ProductCard from "./productCard/ProductCard";
 import './ProductsSection.scss';
 
 const ProductsSection = ({products = [], title}) => {
-    return <div className="products-section">
+    return <div className="products-section" id={title}>
         <div className="title">
             {title}
         </div>

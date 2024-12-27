@@ -21,6 +21,8 @@ const validationSchema = Yup.object({
         .required('Required'),
     category: Yup.object()
         .required('Required'),
+    section: Yup.object()
+        .required('Required'),
     materials: Yup.array()
         .min(1, 'Required')
         .required('Required')
@@ -29,9 +31,10 @@ const validationSchema = Yup.object({
 const toApi = product => _.omit({
     ...product,
     category_id: product.category.id,
+    section_id: product.section.id,
     material_ids: product.materials.map(m => m.id),
     product_documents_attributes: toApiDocuments(product.product_documents)
-}, "category", "materials", "product_documents")
+}, "category", "materials", "product_documents", "section")
 
 const toApiDocuments = documents => documents?.map(m => ({
     ..._.omit(m, 'document'),
@@ -45,7 +48,9 @@ const Product = () => {
         searchCategories: (query, callback) => get("admin/products/search_categories", callback, {q: query}),
         createCategory: (category, callback) => save('admin/categories', "POST", {category}, callback),
         searchMaterials: (query, callback) => get("admin/products/search_materials", callback, {q: query}),
-        createMaterial: (material, callback) => save('admin/materials', "POST", {material}, callback)
+        createMaterial: (material, callback) => save('admin/materials', "POST", {material}, callback),
+        searchSections: (query, callback) => get("admin/products/search_sections", callback, {q: query}),
+        createSection: (section, callback) => save('admin/sections', "POST", {section}, callback)
     }
 
     const formik = useFormik({
@@ -74,6 +79,9 @@ const Product = () => {
 
     const handleCreateMaterial = (name, callback) => {
         actions.createMaterial({name}, callback)
+    }
+    const handleCreateSection = (name, callback) => {
+        actions.createSection({name}, callback)
     }
 
     function saveDocuments(documents) {
@@ -124,6 +132,8 @@ const Product = () => {
             <Input required name='price' formik={formik} label="Price" type="number"/>
             <Select onCreate={handleCreateCategory} required name='category' formik={formik} label="Category"
                     search={actions.searchCategories}/>
+            <Select onCreate={handleCreateSection} required name='section' formik={formik} label="Section"
+                    search={actions.searchSections}/>
             <Select isMulti onCreate={handleCreateMaterial} required name='materials' formik={formik} label="Materials"
                     search={actions.searchMaterials}/>
             <Dropzone onChange={onUploadDocument} onDelete={onDeleteDocument} name='documents' formik={formik}
