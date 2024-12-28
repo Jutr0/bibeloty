@@ -26,7 +26,7 @@ const Select = ({
     useEffect(() => {
         if (value) {
             if (isMulti) {
-                setFormattedValue(value.map(formatter.toSelect));
+                setFormattedValue(value.filter(v => !v._destroy).map(formatter.toSelect));
             } else {
                 setFormattedValue(formatter.toSelect(value))
             }
@@ -35,7 +35,11 @@ const Select = ({
 
     const formattedOnChange = newValue => {
         if (isMulti) {
-            onChange(newValue.map(formatter.toFormik))
+            const mappedValue = value.filter(v => v.id || newValue.some(nV => nV.value === v.value)).map(v => ({
+                ...v,
+                _destroy: !newValue.some(nV => nV.id === v.id)
+            }))
+            onChange(mappedValue)
         } else {
             onChange(formatter.toFormik(newValue))
         }
@@ -56,7 +60,9 @@ const Select = ({
     }
     const onCreateOption = (option) => {
         if (isMulti) {
-            onCreate(option, createdOption => onChange([...value, createdOption]))
+            onCreate(option, createdOption => {
+                onChange([...value, createdOption])
+            })
         } else {
             onCreate(option, onChange)
         }

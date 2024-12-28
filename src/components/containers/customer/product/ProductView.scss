@@ -1,0 +1,71 @@
+@import '../../../../theme/customer/colors';
+
+.product-view {
+  padding: 128px 0;
+  display: flex;
+  gap: 64px;
+
+  .carousel-root {
+    width: 60%;
+    user-select: none;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .info {
+      .name {
+        font-size: 20px;
+      }
+
+      .materials {
+        font-size: 14px;
+      }
+
+      .description {
+        margin-top: 40px;
+      }
+    }
+
+    .actions {
+
+      .size-select {
+        align-self: flex-end;
+        height: 100px;
+
+        h4 {
+          font-weight: 900;
+          margin-bottom: 4px;
+        }
+
+        .buttons {
+          display: flex;
+          gap: 8px;
+
+          .button {
+            background: $gray;
+
+            &.active {
+              background: $primary;
+            }
+          }
+        }
+
+      }
+
+      .add-to-cart {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .price {
+        margin-top: 32px;
+        font-size: 24px;
+        font-weight: 900;
+      }
+    }
+  }
+}

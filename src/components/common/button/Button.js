@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import './Button.scss'
 
-const Button = ({className, onClick, children, icon = false}) => {
+const Button = ({className, onClick, children, icon = false, disabled = false}) => {
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -9,7 +9,7 @@ const Button = ({className, onClick, children, icon = false}) => {
         onClick && onClick(e)
     }
 
-    return <button className={classnames('button', className, {icon})} onClick={handleClick}>
+    return <button disabled={disabled} className={classnames('button', className, {icon, disabled})} onClick={handleClick}>
         {children}
     </button>
 }

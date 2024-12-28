@@ -1,16 +1,26 @@
-@import '../../../theme/admin/colors';
+@import '../../../theme/customer/colors';
 
 .button {
+  font-family: "DM Sans", serif;
   color: $secondary-text;
   font-size: 14px;
-  font-weight: bolder;
+  font-weight: 400;
   background: $primary;
   min-height: 32px;
   min-width: 80px;
-  padding: 4px 8px;
+  padding: 8px 16px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+
+  &.disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  &.small {
+    min-width: 30px;
+  }
 
   &.cancel {
     color: $text;

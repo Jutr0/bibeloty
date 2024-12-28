@@ -1,0 +1,47 @@
+@import '../../../theme/customer/colors';
+
+.quantity-selector {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  border-radius: 6px;
+
+  .button {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    font-weight: 400;
+    font-size: 16px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    &.decrement {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    &.increment {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
+  }
+
+  .quantity {
+    background: $primary;
+    color: $secondary-text;
+    min-width: 100px;
+    width: 100%;
+    padding: 0 4px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border-right: 1px solid $secondary-text;
+    border-left: 1px solid $secondary-text;
+  }
+}

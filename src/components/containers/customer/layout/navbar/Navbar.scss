@@ -8,7 +8,7 @@
   height: 350px;
 
   position: sticky;
-  top: calc(48px - 350px);
+  top: calc(56px - 350px);
   z-index: 99;
 
   .logo {
@@ -42,5 +42,29 @@
       }
     }
 
+  }
+
+  .cart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    width: 24px;
+    cursor: pointer;
+
+    .products-indicator {
+      position: absolute;
+      background: $background;
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      right: -12px;
+      bottom: -6px;
+      font-size: 12px;
+    }
   }
 }

@@ -33,13 +33,19 @@ const toApi = product => _.omit({
     category_id: product.category.id,
     section_id: product.section.id,
     material_ids: product.materials.map(m => m.id),
+    product_sizes_attributes: product.sizes,
     product_documents_attributes: toApiDocuments(product.product_documents)
-}, "category", "materials", "product_documents", "section")
+}, "category", "materials", "product_documents", "section", "sizes")
 
 const toApiDocuments = documents => documents?.map(m => ({
     ..._.omit(m, 'document'),
     document_id: m.document.id
 }))
+
+const sizeSelectFormatter = {
+    toSelect: (option) => ({...option, label: option?.size, value: option?.id}),
+    toFormik: (option) => ({...option, size: option?.label, id: option?.value})
+}
 
 const Product = () => {
     const [initialName, setInitialName] = useState("New")
@@ -79,6 +85,9 @@ const Product = () => {
 
     const handleCreateMaterial = (name, callback) => {
         actions.createMaterial({name}, callback)
+    }
+    const handleCreateSize = (size, callback) => {
+        callback({size})
     }
     const handleCreateSection = (name, callback) => {
         actions.createSection({name}, callback)
@@ -136,6 +145,8 @@ const Product = () => {
                     search={actions.searchSections}/>
             <Select isMulti onCreate={handleCreateMaterial} required name='materials' formik={formik} label="Materials"
                     search={actions.searchMaterials}/>
+            <Select isMulti formatter={sizeSelectFormatter} onCreate={handleCreateSize} name='sizes' formik={formik}
+                    label="Sizes"/>
             <Dropzone onChange={onUploadDocument} onDelete={onDeleteDocument} name='documents' formik={formik}
                       value={formik.values.product_documents.map(cd => cd.document)}
                       label="Images"/>

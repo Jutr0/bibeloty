@@ -1,13 +1,22 @@
 import './ProductCard.scss';
 import {AddShoppingCart} from "@mui/icons-material";
 import {useNavigate} from "react-router";
+import Button from "../../button/Button";
+import {useDispatch} from "react-redux";
+import {addProduct} from "../../../../redux/reducers/cartSlice";
 
 const ProductCard = ({product}) => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const navigateToProduct = () => {
         navigate(`/products/${product.id}`)
+    }
+
+    const handleAddToCart = e => {
+        e.stopPropagation();
+        dispatch(addProduct(product))
     }
 
 
@@ -19,7 +28,7 @@ const ProductCard = ({product}) => {
                 <span className="name">{product.name}</span>
                 <span className="price">{product.price} PLN</span>
             </div>
-            <AddShoppingCart/>
+            <Button icon onClick={handleAddToCart}><AddShoppingCart/></Button>
         </div>
     </div>
 }
