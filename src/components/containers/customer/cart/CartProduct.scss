@@ -1,8 +1,47 @@
 .cart-product {
+  display: flex;
+  gap: 64px;
+  height: 180px;
+
   .image {
     width: 180px;
     height: 180px;
     background-position: center;
     background-size: cover;
+  }
+
+  .price {
+    font-weight: 900;
+  }
+
+  .properties {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 200px;
+    position: relative;
+    gap: 4px;
+
+    .name {
+      font-weight: 900;
+    }
+
+    .size {
+      font-size: 14px;
+    }
+
+    .quantity-wrapper {
+      position: absolute;
+      bottom: 30%;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+
+      .delete.button {
+        min-height: 24px;
+        height: 24px;
+      }
+    }
+
   }
 }

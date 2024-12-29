@@ -7,12 +7,12 @@ const QuantitySelector = ({setValue, value}) => {
 
     const onDecrement = () => {
         if (value > minValue) {
-            setValue(v => v - 1);
+            setValue(value - 1);
         }
     }
 
     const onIncrement = () => {
-        setValue(v => v + 1);
+        setValue(value + 1);
     }
 
     return <div className="quantity-selector">

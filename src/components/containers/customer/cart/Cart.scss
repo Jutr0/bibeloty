@@ -1,8 +1,22 @@
 .cart {
-  padding-top: 64px;
+  padding: 64px 0;
+  position: relative;
 
   .header {
     text-align: center;
     font-weight: 900;
+    margin-bottom:40px;
   }
+
+  .result.button {
+    position: absolute;
+    right: 0;
+  }
+
+  .products {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
 }

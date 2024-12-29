@@ -19,11 +19,17 @@ const cartSlice = createSlice({
             return state;
         },
         removeProduct: (state, action) => {
-            state.products = state.products.filter(p => p.id !== action.payload)
+            state.products = state.products.filter(p => !(p.id === action.payload.id && p.selectedSize === action.payload.selectedSize))
+            return state;
+        },
+        changeProductQuantity: (state, action) => {
+            const product = state.products.find(p => p.id === action.payload.id && p.selectedSize === action.payload.selectedSize)
+            product.quantity = action.payload.quantity;
+
             return state;
         }
     },
 });
 
-export const {addProduct, removeProduct} = cartSlice.actions;
+export const {addProduct, removeProduct, changeProductQuantity} = cartSlice.actions;
 export default cartSlice.reducer;
