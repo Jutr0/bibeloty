@@ -1,4 +1,4 @@
-import Container from "../layout/box/Container";
+import Container from "../layout/./container/Container";
 import {Carousel} from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import './ProductView.scss';
@@ -29,21 +29,15 @@ const ProductView = () => {
     }, []);
 
     const addToCart = () => {
-        dispatch(addProduct({...product, selectedSize, quantity}))
+        dispatch(addProduct({...product, selectedSize, quantity, main_image: product.product_documents?.[0].document}))
         setQuantity(1)
     }
 
     return <Container className="product-view">
         <Carousel autoPlay={false} showThumbs={false} emulateTouch showStatus={false}>
-            <div>
-                <img src="/images/placeholder2.webp"/>
-            </div>
-            <div>
-                <img src="/images/placeholder3.webp"/>
-            </div>
-            <div>
-                <img src="/images/placeholder4.webp"/>
-            </div>
+            {product.product_documents?.map(productDocument => <div>
+                <img src={productDocument.document.url}/>
+            </div>)}
         </Carousel>
         <div className='right'>
             <div className="info">

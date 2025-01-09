@@ -1,4 +1,4 @@
-import Container from "../layout/box/Container";
+import Container from "../layout/./container/Container";
 import './Cart.scss';
 import {useSelector} from "react-redux";
 import Button from "../../../common/button/Button";
@@ -11,7 +11,7 @@ const Cart = () => {
 
     return <Container className="cart">
         <h2 className="header">{isEmpty ? 'KOSZYK JEST PUSTY' : 'PRODUKTY W KOSZYKU'}</h2>
-        {!isEmpty && <> <Button className="result">DO PODSUMOWANIA</Button>
+        {!isEmpty && <>
             <div className="products">
                 {products.map(p => <CartProduct key={p.id} product={p}/>
                 )}

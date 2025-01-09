@@ -35,7 +35,7 @@ const Select = ({
 
     const formattedOnChange = newValue => {
         if (isMulti) {
-            const mappedValue = value.filter(v => v.id || newValue.some(nV => nV.value === v.value)).map(v => ({
+            const mappedValue = _.uniqBy(newValue.concat(value), 'value').filter(v => v.id || newValue.some(nV => nV.value === v.value)).map(v => ({
                 ...v,
                 _destroy: !newValue.some(nV => nV.id === v.id)
             }))

@@ -26,6 +26,7 @@ function Dropzone({onChange, onDelete, className, value: files = []}) {
         onDrop, accept: {
             'image/png': [],
             'image/jpeg': [],
+            'image/webp': [],
         }
     })
 

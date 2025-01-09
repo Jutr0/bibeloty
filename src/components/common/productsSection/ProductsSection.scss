@@ -17,5 +17,11 @@
     flex-wrap: wrap;
     column-gap: 93px;
     row-gap: 64px;
+
+    @media (max-width: 524px) {
+      flex-direction: column;
+      column-gap: 0;
+      row-gap: 32px;
+    }
   }
 }

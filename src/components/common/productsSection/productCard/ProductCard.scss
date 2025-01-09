@@ -34,4 +34,9 @@
     }
   }
 
+  @media (max-width: 524px) {
+    max-width: unset;
+    width: 100%;
+
+  }
 }

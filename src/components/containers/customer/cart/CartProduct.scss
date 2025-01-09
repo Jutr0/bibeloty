@@ -44,4 +44,13 @@
     }
 
   }
+
+  @media (max-width: 524px) {
+    gap: 4px;
+    flex-direction: column;
+    height: unset;
+    .properties .quantity-wrapper {
+      position: relative;
+    }
+  }
 }

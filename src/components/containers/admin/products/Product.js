@@ -60,7 +60,7 @@ const Product = () => {
     }
 
     const formik = useFormik({
-        initialValues: {materials: [], product_documents: []},
+        initialValues: {materials: [], product_documents: [], sizes: []},
         validationSchema,
         onSubmit: values => actions.save(toApi(values), () => navigate('/admin/products'))
     })

@@ -6,7 +6,6 @@
   gap: 64px;
 
   .carousel-root {
-    width: 60%;
     user-select: none;
   }
 
@@ -32,6 +31,7 @@
     .actions {
 
       .size-select {
+
         align-self: flex-end;
         height: 100px;
 
@@ -59,6 +59,7 @@
         display: flex;
         flex-direction: column;
         gap: 12px;
+        max-width: 200px;
       }
 
       .price {
@@ -67,5 +68,12 @@
         font-weight: 900;
       }
     }
+  }
+
+
+  @media (max-width: 524px) {
+    display: flex;
+    flex-direction: column;
+    padding:24px;
   }
 }

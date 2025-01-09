@@ -1,0 +1,19 @@
+@import '../../../../../theme/variables';
+
+.container {
+  max-width: $container-max-width;
+  margin: auto;
+
+  @media (max-width: 1024px) {
+    max-width: 768px;
+  }
+
+  @media (max-width: 792px) {
+    max-width: 500px;
+  }
+
+  @media (max-width: 524px) {
+    max-width: 100%;
+    padding: 24px;
+  }
+}

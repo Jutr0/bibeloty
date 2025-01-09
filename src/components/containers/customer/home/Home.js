@@ -2,7 +2,7 @@ import './Home.scss';
 import {get} from "../../../../utils/actionsBuilder";
 import {useEffect, useState} from "react";
 import ProductsSection from "../../../common/productsSection/ProductsSection";
-import Container from "../layout/box/Container";
+import Container from "../layout/container/Container";
 
 const Home = () => {
 
